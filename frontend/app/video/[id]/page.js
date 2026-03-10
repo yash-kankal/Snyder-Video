@@ -317,7 +317,15 @@ export default function VideoPage() {
 
       <section className="watch-page">
         {error && <p className="error">{error}</p>}
-        {!video && <p>Loading video...</p>}
+        {!video && (
+          <div className="inline-loader" aria-live="polite">
+            <span className="inline-loader-orb" aria-hidden="true" />
+            <span className="inline-loader-dot inline-loader-dot-1" aria-hidden="true" />
+            <span className="inline-loader-dot inline-loader-dot-2" aria-hidden="true" />
+            <span className="inline-loader-dot inline-loader-dot-3" aria-hidden="true" />
+            <p className="inline-loader-text">Loading video</p>
+          </div>
+        )}
 
         {video && (
           <div className="watch-grid">
@@ -333,7 +341,15 @@ export default function VideoPage() {
               >
                 <source src={video.videoUrl} type="video/mp4" />
               </video>
-              {!playerReady && <p className="subtle">Loading player...</p>}
+              {!playerReady && (
+                <div className="inline-loader inline-loader-player" aria-live="polite">
+                  <span className="inline-loader-orb" aria-hidden="true" />
+                  <span className="inline-loader-dot inline-loader-dot-1" aria-hidden="true" />
+                  <span className="inline-loader-dot inline-loader-dot-2" aria-hidden="true" />
+                  <span className="inline-loader-dot inline-loader-dot-3" aria-hidden="true" />
+                  <p className="inline-loader-text">Loading player</p>
+                </div>
+              )}
 
               <h1>{video.title}</h1>
               <div className="uploader-row">

@@ -1717,6 +1717,82 @@ input::file-selector-button {
   color: var(--muted);
 }
 
+.inline-loader {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.008)),
+    rgba(20, 20, 20, 0.66);
+  backdrop-filter: blur(14px) saturate(145%);
+  -webkit-backdrop-filter: blur(14px) saturate(145%);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.18);
+}
+
+.inline-loader-orb {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fe4365 0%, #d33d93 54%, #8d42ec 100%);
+  box-shadow: 0 0 18px rgba(211, 61, 147, 0.5);
+  animation: inline-loader-pulse 1.4s ease-in-out infinite;
+}
+
+.inline-loader-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.34);
+  animation: inline-loader-bounce 1.05s ease-in-out infinite;
+}
+
+.inline-loader-dot-2 {
+  animation-delay: 0.12s;
+}
+
+.inline-loader-dot-3 {
+  animation-delay: 0.24s;
+}
+
+.inline-loader-text {
+  margin: 0 0 0 4px;
+  color: #f4f4f4;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.inline-loader-player {
+  margin-top: 10px;
+}
+
+@keyframes inline-loader-pulse {
+  0%,
+  100% {
+    transform: scale(0.9);
+    opacity: 0.88;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes inline-loader-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.38;
+  }
+  50% {
+    transform: translateY(-3px);
+    opacity: 1;
+  }
+}
+
 .upload-form {
   display: grid;
   gap: 14px;

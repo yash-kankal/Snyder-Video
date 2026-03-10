@@ -168,7 +168,15 @@ export default function HomePage() {
           </div>
         </div>
 
-        {loading && <p>Loading videos...</p>}
+        {loading && (
+          <div className="inline-loader" aria-live="polite">
+            <span className="inline-loader-orb" aria-hidden="true" />
+            <span className="inline-loader-dot inline-loader-dot-1" aria-hidden="true" />
+            <span className="inline-loader-dot inline-loader-dot-2" aria-hidden="true" />
+            <span className="inline-loader-dot inline-loader-dot-3" aria-hidden="true" />
+            <p className="inline-loader-text">Loading videos</p>
+          </div>
+        )}
         {error && <p className="error">{error}</p>}
 
         <section className="video-grid">
