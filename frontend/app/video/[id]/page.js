@@ -318,12 +318,14 @@ export default function VideoPage() {
       <section className="watch-page">
         {error && <p className="error">{error}</p>}
         {!video && (
-          <div className="inline-loader" aria-live="polite">
-            <span className="inline-loader-orb" aria-hidden="true" />
-            <span className="inline-loader-dot inline-loader-dot-1" aria-hidden="true" />
-            <span className="inline-loader-dot inline-loader-dot-2" aria-hidden="true" />
-            <span className="inline-loader-dot inline-loader-dot-3" aria-hidden="true" />
-            <p className="inline-loader-text">Loading video</p>
+          <div className="inline-loader-wrap inline-loader-wrap-screen">
+            <div className="inline-loader" aria-live="polite">
+              <span className="inline-loader-orb" aria-hidden="true" />
+              <span className="inline-loader-dot inline-loader-dot-1" aria-hidden="true" />
+              <span className="inline-loader-dot inline-loader-dot-2" aria-hidden="true" />
+              <span className="inline-loader-dot inline-loader-dot-3" aria-hidden="true" />
+              <p className="inline-loader-text">Loading video</p>
+            </div>
           </div>
         )}
 
@@ -342,12 +344,14 @@ export default function VideoPage() {
                 <source src={video.videoUrl} type="video/mp4" />
               </video>
               {!playerReady && (
-                <div className="inline-loader inline-loader-player" aria-live="polite">
-                  <span className="inline-loader-orb" aria-hidden="true" />
-                  <span className="inline-loader-dot inline-loader-dot-1" aria-hidden="true" />
-                  <span className="inline-loader-dot inline-loader-dot-2" aria-hidden="true" />
-                  <span className="inline-loader-dot inline-loader-dot-3" aria-hidden="true" />
-                  <p className="inline-loader-text">Loading player</p>
+                <div className="inline-loader-wrap inline-loader-wrap-player">
+                  <div className="inline-loader inline-loader-player" aria-live="polite">
+                    <span className="inline-loader-orb" aria-hidden="true" />
+                    <span className="inline-loader-dot inline-loader-dot-1" aria-hidden="true" />
+                    <span className="inline-loader-dot inline-loader-dot-2" aria-hidden="true" />
+                    <span className="inline-loader-dot inline-loader-dot-3" aria-hidden="true" />
+                    <p className="inline-loader-text">Loading player</p>
+                  </div>
                 </div>
               )}
 

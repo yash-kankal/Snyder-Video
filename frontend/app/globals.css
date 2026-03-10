@@ -1733,6 +1733,22 @@ input::file-selector-button {
   box-shadow: 0 18px 34px rgba(0, 0, 0, 0.18);
 }
 
+.inline-loader-wrap {
+  display: grid;
+  place-items: center;
+  width: 100%;
+}
+
+.inline-loader-wrap-screen {
+  min-height: calc(100vh - var(--top-search-height) - 80px);
+}
+
+.inline-loader-wrap-player {
+  width: 100%;
+  padding-top: 12px;
+  place-items: center;
+}
+
 .inline-loader-orb {
   width: 14px;
   height: 14px;
@@ -1766,7 +1782,7 @@ input::file-selector-button {
 }
 
 .inline-loader-player {
-  margin-top: 10px;
+  margin-top: 0;
 }
 
 @keyframes inline-loader-pulse {
