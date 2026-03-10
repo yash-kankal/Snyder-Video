@@ -1,0 +1,13 @@
+# dependencies
+backend/node_modules
+frontend/node_modules
+
+# env files
+backend/.env
+frontend/.env.local
+
+# next build
+frontend/.next
+
+# misc
+.DS_Store
