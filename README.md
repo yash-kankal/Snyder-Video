@@ -1,4 +1,4 @@
-# ASUtube Monorepo
+# Snyder Monorepo
 
 This repo is split into two apps:
 
