@@ -2689,7 +2689,7 @@ input::file-selector-button {
 
   .collapsed-topbar {
     display: grid;
-    grid-template-columns: 36px minmax(0, 1fr) 40px;
+    grid-template-columns: 36px minmax(0, 1fr) 34px;
     grid-template-rows: 40px 40px;
     height: auto;
     min-height: var(--top-search-height);
@@ -2733,15 +2733,16 @@ input::file-selector-button {
   .collapsed-topbar .mood-ai-btn-nav {
     grid-column: 3;
     grid-row: 1;
-    width: 40px;
-    min-width: 40px;
-    max-width: 40px;
-    min-height: 40px;
-    height: 40px;
-    max-height: 40px;
+    width: 34px;
+    min-width: 34px;
+    max-width: 34px;
+    min-height: 34px;
+    height: 34px;
+    max-height: 34px;
     padding: 0;
     justify-content: center;
     border-radius: 999px;
+    align-self: center;
   }
 
   .global-search-btn {
@@ -2753,8 +2754,11 @@ input::file-selector-button {
   }
 
   .global-search-inner .mood-ai-btn-nav {
-    min-width: 40px;
-    width: 40px;
+    min-width: 34px;
+    width: 34px;
+    min-height: 34px !important;
+    height: 34px !important;
+    max-height: 34px !important;
     padding: 0;
     gap: 0;
     border-radius: 999px;
