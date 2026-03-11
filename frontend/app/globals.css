@@ -2683,7 +2683,7 @@ input::file-selector-button {
 
 @media (max-width: 640px) {
   :root {
-    --top-search-height: calc(env(safe-area-inset-top, 0px) + 116px);
+    --top-search-height: calc(env(safe-area-inset-top, 0px) + 124px);
     --search-control-height: 40px;
   }
 
@@ -2825,9 +2825,14 @@ input::file-selector-button {
     -webkit-backdrop-filter: blur(18px) saturate(145%);
   }
 
-  .watch-page,
   .content-area {
-    margin-top: var(--top-search-height);
+    margin-top: 0;
+    padding-top: calc(var(--top-search-height) + 10px);
+  }
+
+  .watch-page {
+    margin-top: 0;
+    padding-top: calc(var(--top-search-height) + 8px);
   }
 
   .auth-form h2 {
