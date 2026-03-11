@@ -914,9 +914,9 @@ body.sidebar-hidden {
   -webkit-appearance: none;
   border: 1px solid #ffffff;
   border-radius: 12px;
-  min-height: 100% !important;
-  height: 100% !important;
-  max-height: 100% !important;
+  min-height: 36px;
+  height: 36px;
+  max-height: 36px;
   padding: 0 12px;
   background: #ffffff;
   color: #111111;
@@ -929,16 +929,16 @@ body.sidebar-hidden {
 }
 
 .global-search-inner .mood-ai-btn-nav {
-  min-height: 100% !important;
-  height: 100% !important;
-  max-height: 100% !important;
+  min-height: 36px;
+  height: 36px;
+  max-height: 36px;
   line-height: 1;
-  padding: 0 10px;
-  min-width: 92px;
+  padding: 0 12px;
+  min-width: 0;
   font-size: 0.86rem;
   gap: 6px;
   color: #111111;
-  align-self: stretch;
+  align-self: center;
 }
 
 .global-search-inner .mood-ai-btn-nav .mood-ai-text {
