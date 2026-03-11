@@ -52,6 +52,8 @@ export default function Navbar({ user, hideSidebar = false }) {
   const searchParams = useSearchParams();
   const [subscriptions, setSubscriptions] = useState([]);
   const [collapsed, setCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [currentUser, setCurrentUser] = useState(user || null);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -149,7 +151,32 @@ export default function Navbar({ user, hideSidebar = false }) {
   }, [sidebarStorageKey]);
 
   useEffect(() => {
+    const updateViewport = () => {
+      const mobile = window.innerWidth <= 820;
+      setIsMobile(mobile);
+      if (!mobile) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    updateViewport();
+    window.addEventListener("resize", updateViewport);
+    return () => window.removeEventListener("resize", updateViewport);
+  }, []);
+
+  useEffect(() => {
     document.body.classList.remove("sidebar-collapsed");
+    document.body.classList.remove("mobile-nav-open");
+
+    if (isMobile) {
+      document.body.classList.toggle("mobile-nav-open", mobileMenuOpen && !hideSidebar);
+      document.body.classList.add("sidebar-collapsed");
+      return () => {
+        document.body.classList.remove("sidebar-collapsed");
+        document.body.classList.remove("mobile-nav-open");
+      };
+    }
+
     if (collapsed && !hideSidebar) {
       document.body.classList.add("sidebar-collapsed");
     }
@@ -157,8 +184,9 @@ export default function Navbar({ user, hideSidebar = false }) {
     return () => {
       document.body.classList.remove("sidebar-collapsed");
       document.body.classList.remove("sidebar-hidden");
+      document.body.classList.remove("mobile-nav-open");
     };
-  }, [collapsed, hideSidebar]);
+  }, [collapsed, hideSidebar, isMobile, mobileMenuOpen]);
 
   useEffect(() => {
     const q = searchParams.get("q") || "";
@@ -227,6 +255,10 @@ export default function Navbar({ user, hideSidebar = false }) {
   };
 
   const toggleSidebar = () => {
+    if (isMobile) {
+      setMobileMenuOpen((prev) => !prev);
+      return;
+    }
     const next = !collapsed;
     setCollapsed(next);
     localStorage.setItem(sidebarStorageKey, next ? "1" : "0");
@@ -474,6 +506,7 @@ export default function Navbar({ user, hideSidebar = false }) {
 
   const activeCategory = normalizeCategory(searchParams.get("category") || "");
   const activeSort = String(searchParams.get("sort") || "").toLowerCase();
+  const showCompactTopbar = collapsed || isMobile;
   const exploreItems = [
     { label: "Music", icon: Music2 },
     { label: "Technology", icon: Cpu },
@@ -493,7 +526,7 @@ export default function Navbar({ user, hideSidebar = false }) {
           </linearGradient>
         </defs>
       </svg>
-      {collapsed ? (
+      {showCompactTopbar ? (
         <header className="collapsed-topbar">
           <button className="icon-btn sidebar-menu-btn" aria-label="menu" onClick={toggleSidebar}>
             <Menu size={18} />
@@ -576,8 +609,12 @@ export default function Navbar({ user, hideSidebar = false }) {
         </div>
       )}
 
+      {!hideSidebar && isMobile && mobileMenuOpen && (
+        <button className="mobile-nav-backdrop" type="button" aria-label="Close menu" onClick={toggleSidebar} />
+      )}
+
       {!hideSidebar && (
-        <aside className="yt-sidebar">
+        <aside className={`yt-sidebar ${isMobile ? "yt-sidebar-mobile" : ""} ${mobileMenuOpen ? "mobile-open" : ""}`}>
           <div className="sidebar-top">
             <div className="sidebar-brand">
               <button className="icon-btn sidebar-menu-btn" aria-label="menu" type="button" onClick={toggleSidebar}>
