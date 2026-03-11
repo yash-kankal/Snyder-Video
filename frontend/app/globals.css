@@ -2664,6 +2664,18 @@ input::file-selector-button {
     z-index: 42;
   }
 
+  body.sidebar-collapsed .yt-sidebar.yt-sidebar-mobile {
+    padding: calc(env(safe-area-inset-top, 0px) + 12px) 10px 10px;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  body.mobile-nav-open .yt-sidebar.yt-sidebar-mobile {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
   .mobile-nav-backdrop {
     z-index: 41;
   }
@@ -2671,25 +2683,29 @@ input::file-selector-button {
 
 @media (max-width: 640px) {
   :root {
-    --top-search-height: 126px;
+    --top-search-height: 112px;
     --search-control-height: 40px;
   }
 
   .collapsed-topbar {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr) 40px;
+    grid-template-rows: 40px 40px;
     height: auto;
     min-height: var(--top-search-height);
     padding:
       calc(env(safe-area-inset-top, 0px) + 10px)
       12px
       12px;
-    gap: 10px 8px;
-    flex-wrap: wrap;
-    align-content: flex-start;
+    gap: 10px 10px;
+    align-items: center;
+    align-content: start;
   }
 
   .collapsed-logo {
-    order: 2;
-    flex: 1 1 auto;
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
     font-size: 1.35rem;
     margin-right: 0;
     line-height: 1;
@@ -2701,29 +2717,31 @@ input::file-selector-button {
   }
 
   .collapsed-topbar .sidebar-menu-btn {
-    order: 1;
+    grid-column: 1;
+    grid-row: 1;
     flex: 0 0 36px;
   }
 
   .collapsed-search-form {
-    order: 3;
+    grid-column: 1 / -1;
+    grid-row: 2;
     margin: 0;
-    flex: 1 1 calc(100% - 108px);
-    width: auto;
+    width: 100%;
     min-width: 0;
   }
 
   .collapsed-topbar .mood-ai-btn-nav {
-    order: 4;
-    flex: 0 0 104px;
-    min-width: 104px;
-    max-width: 104px;
+    grid-column: 3;
+    grid-row: 1;
+    width: 40px;
+    min-width: 40px;
+    max-width: 40px;
     min-height: 40px;
     height: 40px;
     max-height: 40px;
-    padding: 0 10px;
+    padding: 0;
     justify-content: center;
-    border-radius: 14px;
+    border-radius: 999px;
   }
 
   .global-search-btn {
@@ -2735,11 +2753,16 @@ input::file-selector-button {
   }
 
   .global-search-inner .mood-ai-btn-nav {
-    min-width: 82px;
-    padding: 0 8px;
-    font-size: 0.8rem;
-    gap: 5px;
-    border-radius: 12px;
+    min-width: 40px;
+    width: 40px;
+    padding: 0;
+    gap: 0;
+    border-radius: 999px;
+  }
+
+  .collapsed-topbar .mood-ai-btn-nav .mood-ai-text,
+  .global-search-inner .mood-ai-btn-nav .mood-ai-text {
+    display: none;
   }
 
   .auth-page {
@@ -2772,6 +2795,18 @@ input::file-selector-button {
     place-items: center;
   }
 
+  .auth-panel::before {
+    content: "Snyder";
+    display: block;
+    width: 100%;
+    margin: 0 0 18px;
+    text-align: center;
+    font-size: 2.15rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #f4f4f4;
+  }
+
   .auth-form {
     gap: 14px;
     width: min(100%, 420px);
@@ -2784,6 +2819,11 @@ input::file-selector-button {
     box-shadow: 0 28px 60px rgba(0, 0, 0, 0.34);
     backdrop-filter: blur(18px) saturate(145%);
     -webkit-backdrop-filter: blur(18px) saturate(145%);
+  }
+
+  .watch-page,
+  .content-area {
+    margin-top: var(--top-search-height);
   }
 
   .auth-form h2 {
